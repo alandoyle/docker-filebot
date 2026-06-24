@@ -1,0 +1,16 @@
+---
+services:
+  filebot-app:
+    image: alandoyle/filebot:latest
+    container_name: filebot
+    ports:
+      - 80:8080  # If you want to go Filebot through a browser
+      - 5900:5900  # If you want to use a VNC client instead of the browser
+    volumes:
+      - /Storage/Incoming:/media
+      - ./data:/opt/filebot/data
+    environment:
+      - RESOLUTION=1600x900
+      # - VNC_PASSWORD=8charpwd
+    restart: always
+    shm_size: "1gb"
